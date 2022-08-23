@@ -29,22 +29,26 @@
 // 78 -> третьей цифры нет
 // 32679 -> 6
 
-// void ThirdNumber(int num)
-// {
-//     if ((num / 100 >1) && (num / 100 < 10))
-//     {
-//         Console.WriteLine(num % 10);
-//     }
-//     else
-//     {
-//         Console.WriteLine("Третьей цифры нет");
-//     }
-// }
+void ThirdNumber(int num)
+{
+    if ((num / 100 >1))
+    {
+        while (num / 100 > 10)
+        {
+            num /=10;
+        }
+        Console.WriteLine(num % 10);
+    }
+    else
+    {
+        Console.WriteLine("Третьей цифры нет");
+    }
+}
 
-// Console.Write("Введите число: ");
-// int number = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите число: ");
+int number = Convert.ToInt32(Console.ReadLine());
 
-// ThirdNumber(number);
+ThirdNumber(number);
 
 // -------------------------------------------------------------------------------------------------------------------------------------
 
@@ -82,19 +86,19 @@
 // ** Дополнительное не обезательное *****
 // Напишите программу, которая принимает на вход число и проверяет, кратно ли оно одновременно 7 и 23. 14 -> нет 46 -> нет 161 -> да
 
-void Multiplicity(int num)
-{
-    if ((num % 7 == 0) && (num % 23 == 0))
-    {
-        Console.WriteLine($"{num} кратно 7 и 23");
-    }
-    else
-    {
-        Console.WriteLine($" {num} Не кратно 7 и 23!");
-    }
-}
+// void Multiplicity(int num)
+// {
+//     if ((num % 7 == 0) && (num % 23 == 0))
+//     {
+//         Console.WriteLine($"{num} кратно 7 и 23");
+//     }
+//     else
+//     {
+//         Console.WriteLine($" {num} Не кратно 7 и 23!");
+//     }
+// }
 
-Console.Write("Введите число: ");
-int number = Convert.ToInt32(Console.ReadLine());
+// Console.Write("Введите число: ");
+// int number = Convert.ToInt32(Console.ReadLine());
 
-Multiplicity(number);
+// Multiplicity(number);
