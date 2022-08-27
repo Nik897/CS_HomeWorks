@@ -42,6 +42,36 @@
 
 // --------------------------------------------------------------------------------------
 
+// Универсальный вариант на проверку палиндрома для чмсел и строк:
+
+void polindromeString()
+{
+  Console.Write("Введите строку: ");
+  string str = Console.ReadLine();
+
+  int length = str.Length;
+
+  int count = length / 2;
+
+  bool flag = true;
+
+  for (int i = 0; i < count; i++)
+  {
+    if (str[i] != str[length -1 -i])
+    {
+      flag = false;
+      break;      
+    }
+  }
+
+  if (flag ) Console.WriteLine($"Строка {str} - палиндром");
+  else Console.WriteLine($"Строка {str} - НЕ палиндром"); 
+}
+
+polindromeString();
+
+// --------------------------------------------------------------------------------------
+
 // Задача 21
 // Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
 // A (3,6,8); B (2,1,-7), -> 15.84
@@ -81,15 +111,15 @@
 // 3 -> 1, 8, 27
 // 5 -> 1, 8, 27, 64, 125
 
-void cubicNumber()
-{
-      Console.Write("Введите число: ");
-      int N = Convert.ToInt32(Console.ReadLine());
+// void cubicNumber()
+// {
+//       Console.Write("Введите число: ");
+//       int N = Convert.ToInt32(Console.ReadLine());
 
-      for (int i = 1; i <= N; i++)
-      {
-        Console.Write($"{Math.Pow(i, 3)} ");       
-      }
-}
+//       for (int i = 1; i <= N; i++)
+//       {
+//         Console.Write($"{Math.Pow(i, 3)} ");       
+//       }
+// }
 
-cubicNumber();
+// cubicNumber();
