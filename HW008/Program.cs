@@ -12,6 +12,7 @@ void Start()
         System.Console.WriteLine("Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.");
         System.Console.WriteLine("Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.");
         System.Console.WriteLine("Задача 60. Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.");
+        System.Console.WriteLine("Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.");
         System.Console.WriteLine("0) Выход");
 
         int numTask = InputNumber("Введите номер задачи: ");
@@ -101,6 +102,18 @@ void Start()
                 unicNumbers = GenerateUnicNumber(minValue, maxValue, lengthUnic);
 
                 FillCube(cube, length, width, heigth, unicNumbers);
+
+                break;
+
+            case 62:
+
+                int N = 4, M = 4;
+
+                int[,] spiralArray = new int[N, M];
+
+                FillSpiral(spiralArray);
+
+                PrintArrayd2(spiralArray);
 
                 break;
 
@@ -260,4 +273,41 @@ int[] GenerateUnicNumber(int minVal, int maxVal, int len) // генерируе�
         } while (!flag);
     }
     return unicNum;
+}
+
+void FillSpiral(int[,] spiralArr) // Заполнение массива по спирали
+{
+    int nLocal = spiralArr.GetLength(0);
+    int mLocal = spiralArr.GetLength(1);
+    int row = 0, col = 0, dx = 1, dy = 0, dirChanges = 0, gran = mLocal;
+
+    for (int i = 0; i < spiralArr.Length; i++)
+    {
+        spiralArr[row, col] = i + 1;
+
+        if (--gran == 0)
+        {
+            gran = mLocal * (dirChanges % 2) + nLocal * ((dirChanges + 1) % 2) - (dirChanges / 2 - 1) - 2;
+            int temp = dx;
+            dx = -dy;
+            dy = temp;
+            dirChanges++;
+        }
+
+        col += dx;
+        row += dy;
+    }
+}
+
+void PrintArrayd2(int[,] matr) // Вывод двумерного массива целых чисел на экран с модификатором вывода :d2
+{
+    for (int i = 0; i < matr.GetLength(0); i++)
+    {
+        for (int j = 0; j < matr.GetLength(1); j++)
+        {
+            System.Console.Write($"{matr[i, j]:d2} ");
+        }
+
+        System.Console.WriteLine();
+    }
 }
