@@ -90,11 +90,17 @@ void Start()
 
                 int length = 2, width = 2, heigth = 2;
 
+                int minValue = 10, maxValue = 100; // Минимальное и масимальное значение элементов массива
+
                 int[,,] cube = new int[length, width, heigth];
 
-                int[] unicNumbers = new int[length * width * heigth];
+                int lengthUnic = length * width * heigth;
 
-                FillCube(cube, length, width, heigth);
+                int[] unicNumbers = new int[lengthUnic];
+
+                unicNumbers = GenerateUnicNumber(minValue, maxValue, lengthUnic);
+
+                FillCube(cube, length, width, heigth, unicNumbers);
 
                 break;
 
@@ -207,16 +213,19 @@ int[,] MultiplicateAB(int[,] matrA, int[,] matrB) // Произведение д
     return matrC;
 }
 
-void FillCube(int[,,] cubeLocal, int len, int wi, int hei) // Заролняем трехмерный массив
+void FillCube(int[,,] cubeLocal, int len, int wi, int hei, int[] sourceArray) // Заролняем трехмерный массив
 {
+    int count = 0;
+
     for (int i = 0; i < len; i++)
     {
         for (int j = 0; j < wi; j++)
         {
             for (int k = 0; k < hei; k++)
             {
-                cubeLocal[i, j, k] = GenerateUnicNumber();
+                cubeLocal[i, j, k] = sourceArray[count];
                 System.Console.Write($"{cubeLocal[i, j, k]} ({i}, {j}, {k})  ");
+                count++;
             }
 
             System.Console.WriteLine();
@@ -224,26 +233,31 @@ void FillCube(int[,,] cubeLocal, int len, int wi, int hei) // Заролняем
     }
 }
 
-int GenerateUnicNumber(int[] unicNum)
+int[] GenerateUnicNumber(int minVal, int maxVal, int len) // генерируем уникальные числа и складываем в одномерный массив
 {
-    bool flag = true, flag2 = false;
+    var random = new Random();
 
-    while (!flag2)
+    int[] unicNum = new int[len];
+
+    for (int i = 0; i < len; ++i)
     {
-        int number = new Random().Next(1, 10);
+        bool flag;
 
-        foreach (int item in unicNum)
+        do
         {
-            if (item == number)
+            unicNum[i] = random.Next(minVal, maxVal);
+
+            flag = true;
+
+            for (int j = 0; j < i; ++j)
             {
-                //flag = false;
-                break;
+                if (unicNum[i] == unicNum[j])
+                {
+                    flag = false;
+                    break;
+                }
             }
-            else
-            {
-                flag2 = true;
-            }
-        }
-        return number;
+        } while (!flag);
     }
+    return unicNum;
 }
